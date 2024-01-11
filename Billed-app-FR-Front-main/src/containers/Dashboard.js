@@ -90,7 +90,6 @@ export default class {
   
     if (currentSelectedBillId === bill.id) {
       // If the clicked bill is the currently selected one, toggle the big billed icon
-      console.log(`Toggling big billed icon for bill ${bill.id}`);
       $(`#open-bill${bill.id}`).css({ background: '#0D5AE5' });
       $('.dashboard-right-container div').html(`
         <div id="big-billed-icon" data-testid="big-billed-icon"> ${BigBilledIcon} </div>
