@@ -236,7 +236,6 @@ test('getBills returns a bill with an unformatted date when formatDate throws an
   mockFormatDate.mockReturnValue('invalid-date-format');
 
   const billsComponent = new Bills({ document, onNavigate, store: mockStore });
-
   const bills = await billsComponent.getBills();
 
   // Check for unformatted date
@@ -248,8 +247,7 @@ describe('Bills', () => {
   it('it adds event listeners to iconEye elements and handles click', () => {
     const bills = new Bills({ document: document });
     const iconEyes = document.querySelectorAll('div[data-testid="icon-eye"]');
-    const spyOnHandleClick = jest.spyOn(bills, 'handleClickIconEye');
-
+   
     for (const iconEye of iconEyes) {
       bills.handleClickIconEye(iconEye);
     }
