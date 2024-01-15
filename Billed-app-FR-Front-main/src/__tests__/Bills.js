@@ -260,3 +260,46 @@ describe('Bills', () => {
     }
   });
 });
+
+test('getBills handles error when bills list returns 404', async () => {
+  const mockError = new Error('Simulated error: Bills not found (404)');
+
+  // Mock the list method to return a rejected promise with 404 error
+  const mockStoreWith404Error = {
+    bills: jest.fn(() => ({
+      list: jest.fn(() => Promise.reject(mockError)),
+    })),
+  };
+
+  const billsComponent = new Bills({ document, onNavigate, store: mockStoreWith404Error });
+
+  // Attempt to call the getBills method
+  try {
+    await billsComponent.getBills();
+  } catch (error) {
+    // Verify that the expected 404 error is caught
+    expect(error).toBe(mockError);
+  }
+});
+
+// Similar structure can be used for testing 500 error
+test('getBills handles error when bills list returns 500', async () => {
+  const mockError = new Error('Simulated error: Internal Server Error (500)');
+
+  // Mock the list method to return a rejected promise with 500 error
+  const mockStoreWith500Error = {
+    bills: jest.fn(() => ({
+      list: jest.fn(() => Promise.reject(mockError)),
+    })),
+  };
+
+  const billsComponent = new Bills({ document, onNavigate, store: mockStoreWith500Error });
+
+  // Attempt to call the getBills method
+  try {
+    await billsComponent.getBills();
+  } catch (error) {
+    // Verify that the expected 500 error is caught
+    expect(error).toBe(mockError);
+  }
+});

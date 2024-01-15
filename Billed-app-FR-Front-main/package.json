@@ -3,7 +3,7 @@
     "test": "jest --coverage --noStackTrace"
   },
   "jest": {
-    "verbose": true,
+    "verbose": false,
     "setupFiles": [
       "./setup-jest.js"
     ],
