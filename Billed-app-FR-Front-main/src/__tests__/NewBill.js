@@ -2,13 +2,9 @@
  * @jest-environment jsdom
  */
 
-import { fireEvent, screen, waitFor } from "@testing-library/dom";
-import userEvent from '@testing-library/user-event';
+
 import NewBill from "../containers/NewBill.js";
-import { ROUTES_PATH } from "../constants/routes";
-import { localStorageMock } from "../__mocks__/localStorage.js";
-import mockStore from "../__mocks__/store";
-import router from "../app/Router";
+
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page", () => {
@@ -147,3 +143,8 @@ describe("Given I am connected as an employee", () => {
     });
   });
 });  
+
+
+
+
+

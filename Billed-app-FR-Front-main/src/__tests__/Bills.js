@@ -42,6 +42,13 @@ describe("Given I am connected as an employee", () => {
     });
   });
 
+  test('Constructor Initialization', () => {
+    const billsInstance = new Bills({ document: document, onNavigate: jest.fn(), store: MockedStore });
+    expect(billsInstance.document).toBe(document);
+    expect(billsInstance.onNavigate).toBeDefined();
+    expect(billsInstance.store).toBe(MockedStore);
+  });
+
   test("Then clicking on 'New Bill' button should navigate to the NewBill page", async () => {
     Object.defineProperty(window, 'localStorage', { value: localStorageMock });
     window.localStorage.setItem('user', JSON.stringify({
@@ -66,13 +73,6 @@ describe("Given I am connected as an employee", () => {
   });
 });
 
-
-test('Constructor Initialization', () => {
-  const billsInstance = new Bills({ document: document, onNavigate: jest.fn(), store: MockedStore });
-  expect(billsInstance.document).toBe(document);
-  expect(billsInstance.onNavigate).toBeDefined();
-  expect(billsInstance.store).toBe(MockedStore);
-});
 
 test('handleClickIconEye is called when the icon is clicked', () => {
   const billsInstance = new Bills({ document: document, onNavigate: jest.fn(), store: MockedStore });
@@ -143,7 +143,6 @@ const mockStore = {
         "status": "refused",
         "commentAdmin": "en fait non"
       },
-      // Add more mock bills as needed
     ])),
   })),
 };
@@ -217,8 +216,6 @@ const mockFormatDate = jest.fn(() => {
   }
 });
 
-// Import the actual formatDate function
-const formatDate = require('../app/format.js');
 
 test('getBills returns a bill with an unformatted date when formatDate throws an error', async () => {
   // Mock the store
